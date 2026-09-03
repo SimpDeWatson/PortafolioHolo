@@ -1,0 +1,174 @@
+/* =========================================
+   PORTAFOLIO — TEMA HOLOLIVE MYTH
+   styles.css — Estilos globales (cielo nocturno / constelación)
+   Nota: el color de Ina se reserva SOLO para la página Perfil (ver perfil.css)
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-dark:      #05070f;
+  --bg-card:      rgba(15, 20, 40, 0.85);
+  --bg-card2:     rgba(20, 26, 52, 0.9);
+  --accent:       #f5c451;   /* dorado estelar */
+  --accent2:      #ffffff;   /* blanco estrella */
+  --accent3:      #7c8fdc;   /* azul noche */
+  --text:         #eef1fb;
+  --text-muted:   #9aa3c9;
+  --border:       rgba(245, 196, 81, 0.3);
+  --glow-a:       0 0 25px rgba(245, 196, 81, 0.45);
+  --glow-b:       0 0 25px rgba(124, 143, 220, 0.45);
+  --font-head:    'Baloo 2', sans-serif;
+  --font-body:    'Quicksand', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(245, 196, 81, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(124, 143, 220, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 68px;
+  background: rgba(10, 6, 20, 0.92);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.nav-logo-hex {
+  width: 36px;
+  height: 40px;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent2);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  color: #0b0f1e;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: var(--glow-a);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(245, 196, 81, 0.7);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent2);
+  border: 2px solid var(--accent2);
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-ghost:hover {
+  background: rgba(124, 143, 220, 0.14);
+  box-shadow: var(--glow-b);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeIn 0.7s ease forwards; }
+
+/* Utilidades */
+.back-link {
+  color: var(--accent2);
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.back-link:hover {
+  color: var(--accent3);
+}
