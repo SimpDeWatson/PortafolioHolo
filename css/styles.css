@@ -1,0 +1,173 @@
+/* =========================================
+   PORTAFOLIO — TEMA HOLOLIVE
+   styles.css — Estilos globales (escenario / marca)
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-dark:      #0b0618;
+  --bg-card:      rgba(24, 15, 40, 0.82);
+  --bg-card2:     rgba(32, 20, 52, 0.88);
+  --accent:       #b16cea;   /* violeta escenario */
+  --accent2:      #4fd8c4;   /* cian holográfico */
+  --accent3:      #ff6fb5;   /* rosa acento */
+  --text:         #f1e9ff;
+  --text-muted:   #a996c9;
+  --border:       rgba(177, 108, 234, 0.35);
+  --glow-a:       0 0 25px rgba(177, 108, 234, 0.5);
+  --glow-b:       0 0 25px rgba(79, 216, 196, 0.45);
+  --font-head:    'Baloo 2', sans-serif;
+  --font-body:    'Quicksand', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(177, 108, 234, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(79, 216, 196, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255, 111, 181, 0.10) 0%, transparent 50%);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 68px;
+  background: rgba(10, 6, 20, 0.92);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.nav-logo-hex {
+  width: 36px;
+  height: 40px;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent2);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  color: #14081f;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: var(--glow-a);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(177, 108, 234, 0.7);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent2);
+  border: 2px solid var(--accent2);
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-ghost:hover {
+  background: rgba(79, 216, 196, 0.12);
+  box-shadow: var(--glow-b);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeIn 0.7s ease forwards; }
+
+/* Utilidades */
+.back-link {
+  color: var(--accent2);
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.back-link:hover {
+  color: var(--accent3);
+}
