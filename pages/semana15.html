@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semana 15 - Adrian Alexis</title>
+  <title>Semana 13 - Adrian Alexis</title>
 
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/tareas.css">
@@ -23,7 +23,7 @@
 
     body {
       background-color: var(--w-bg-dark) !important;
-      background-image: url("../img/calliope-semana15.jpg") !important;
+      background-image: url("../img/calliope-semana13.jpg") !important;
       background-size: cover !important;
       background-position: center center !important;
       background-repeat: no-repeat !important;
@@ -144,37 +144,53 @@
   <!-- Navbar -->
   <nav>
     <a href="../index.html#home" class="nav-brand">
-      Adrian Alexis — Portfolio UPLA
+      Adrian Alexis — Holofolio UPLA
     </a>
     <ul class="nav-links">
       <li><a href="../index.html#home">Inicio</a></li>
       <li><a href="../index.html#tareas" class="active">Tareas</a></li>
       <li><a href="../index.html#perfil">Perfil</a></li>
       <li><a href="../index.html#info">Información</a></li>
+      <li id="edit-controls" class="edit-controls" style="display:none;">
+        <button type="button" id="btn-toggle-edit" class="btn-edit" onclick="toggleEditMode()">✏️ Editar</button>
+        <button type="button" id="btn-save-edit" class="btn-save" onclick="saveEdits()" style="display:none;">💾 Confirmar guardado</button>
+      </li>
     </ul>
   </nav>
 
   <div class="tareas-wrapper">
     <div class="semana-header">
       <span class="semana-icon">💀</span>
-      <h1 class="semana-title">Semana 15</h1>
-      <p class="semana-subtitle">UNIDAD IV: Gestión y Cierre del Proyecto</p>
-      <p class="semana-subtitle">Tema de la semana: Optimización y control de calidad</p>
-      <span class="semana-talent-tag">💀 Temática: Mori Calliope 🌙</span>
+      <h1 class="semana-title" data-editable="s13-title">Semana 13</h1>
+      <p class="semana-subtitle" data-editable="s13-unit">UNIDAD IV: Gestión y Cierre del Proyecto</p>
+      <p class="semana-subtitle" data-editable="s13-tema">Tema de la semana: Control de versiones avanzado con Git</p>
+      <span class="semana-talent-tag" data-editable="s13-talent">💀 Temática: Mori Calliope 🌙</span>
     </div>
 
     <div style="text-align:center;">
-      <a href="https://github.com/SimpDeWatson/PortafolioHolo/tree/main/pages/Semana15" target="_blank" class="github-link">
+      <a href="https://github.com/SimpDeWatson/PortafolioHolo/tree/main/pages/Semana13" target="_blank" class="github-link">
         🌐 Ver carpeta en GitHub
       </a>
     </div>
 
-    <!-- Mensaje mientras no tenga contenido: reemplaza este bloque por tu pdf-section cuando subas el archivo -->
-    <div class="coming-soon">
-      📂 Aún no hay archivos en esta semana.<br><br>
-      Agrega tu PDF/Word dentro de la carpeta <strong>Semana15/</strong> del repositorio
-      y reemplaza este bloque por un <code>&lt;div class="pdf-section"&gt;</code> con el iframe del visor,
-      igual que en las semanas ya completadas.
+    <div id="week-files-root" data-week="semana13">
+      <!-- Subida: solo usuario logueado -->
+      <div class="files-upload-panel" style="display:none;">
+        <div class="files-dropzone" onclick="document.getElementById('week-file-input').click()">
+          <p>📁 Arrastra archivos aquí o haz clic para seleccionar<br>
+          <small>Imágenes y PDF (máx. 100 MB c/u)</small></p>
+          <span class="btn-upload">⬆️ Subir archivo</span>
+          <input type="file" id="week-file-input" accept="image/*,application/pdf,.pdf"
+                 multiple hidden />
+        </div>
+      </div>
+
+      <div class="files-empty-hint">
+        📂 Aún no hay archivos en esta semana.<br><br>
+        Si iniciaste sesión con usuario y contraseña, usa el panel de arriba para subir imágenes o PDFs.
+      </div>
+
+      <div class="files-gallery"></div>
     </div>
 
     <div style="text-align: center; margin-top: 3.5rem;">
@@ -182,5 +198,7 @@
     </div>
   </div>
 
+  <script src="../js/edit.js"></script>
+  <script src="../js/files.js"></script>
 </body>
 </html>
