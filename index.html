@@ -107,6 +107,10 @@
       <li><a href="#tareas" data-page="tareas" onclick="showPage('tareas', this)">Tareas</a></li>
       <li><a href="#perfil" data-page="perfil" onclick="showPage('perfil', this)">Perfil</a></li>
       <li><a href="#info" data-page="info"   onclick="showPage('info',   this)">Información</a></li>
+      <li id="edit-controls" class="edit-controls" style="display:none;">
+        <button type="button" id="btn-toggle-edit" class="btn-edit" onclick="toggleEditMode()">✏️ Editar</button>
+        <button type="button" id="btn-save-edit" class="btn-save" onclick="saveEdits()" style="display:none;">💾 Confirmar guardado</button>
+      </li>
       <li><a href="#" class="nav-logout" onclick="logout()">Cerrar sesión</a></li>
     </ul>
   </nav>
@@ -145,8 +149,8 @@
 
         <div class="divider"></div>
 
-        <h1 class="hero-title">Mi Portafolio de Trabajos</h1>
-        <p class="hero-desc">
+        <h1 class="hero-title" data-editable="hero-title">Mi Portafolio de Trabajos</h1>
+        <p class="hero-desc" data-editable="hero-desc">
           Un portafolio inspirado en Hololive Myth: cada unidad del curso
           lleva la energía de un talent distinto, y mi perfil está bajo la
           protección de la Grande Priestess, Ninomae Ina'nis.
@@ -186,9 +190,9 @@
       <div class="unit-section unit-gura">
         <div class="unit-header">
           <span class="unit-icon">🦈</span>
-          <span class="unit-title">UNIDAD I: Fundamentos de Programación Orientada a Objetos</span>
+          <span class="unit-title" data-editable="unit1-title">UNIDAD I: Fundamentos de Programación Orientada a Objetos</span>
         </div>
-        <p class="unit-talent">Temática: Gawr Gura — el abismo de las bases de POO</p>
+        <p class="unit-talent" data-editable="unit1-talent">Temática: Gawr Gura — el abismo de las bases de POO</p>
         <div class="weeks-grid">
           <a href="pages/semana1.html" class="week-card">Semana 1</a>
           <a href="pages/semana2.html" class="week-card">Semana 2</a>
@@ -201,9 +205,9 @@
       <div class="unit-section unit-amelia">
         <div class="unit-header">
           <span class="unit-icon">🕵️‍♀️</span>
-          <span class="unit-title">UNIDAD II: Componentes de una Aplicación</span>
+          <span class="unit-title" data-editable="unit2-title">UNIDAD II: Componentes de una Aplicación</span>
         </div>
-        <p class="unit-talent">Temática: Amelia Watson — investigando cada componente</p>
+        <p class="unit-talent" data-editable="unit2-talent">Temática: Amelia Watson — investigando cada componente</p>
         <div class="weeks-grid">
           <a href="pages/semana5.html" class="week-card">Semana 5</a>
           <a href="pages/semana6.html" class="week-card">Semana 6</a>
@@ -216,9 +220,9 @@
       <div class="unit-section unit-kiara">
         <div class="unit-header">
           <span class="unit-icon">🔥</span>
-          <span class="unit-title">UNIDAD III: Desarrollo de Aplicaciones Web</span>
+          <span class="unit-title" data-editable="unit3-title">UNIDAD III: Desarrollo de Aplicaciones Web</span>
         </div>
-        <p class="unit-talent">Temática: Takanashi Kiara — energía de fénix en cada práctica</p>
+        <p class="unit-talent" data-editable="unit3-talent">Temática: Takanashi Kiara — energía de fénix en cada práctica</p>
         <div class="weeks-grid">
           <a href="pages/semana9.html" class="week-card">Semana 9</a>
           <a href="pages/semana10.html" class="week-card">Semana 10</a>
@@ -231,9 +235,9 @@
       <div class="unit-section unit-calliope">
         <div class="unit-header">
           <span class="unit-icon">💀</span>
-          <span class="unit-title">UNIDAD IV: Gestión y Cierre del Proyecto</span>
+          <span class="unit-title" data-editable="unit4-title">UNIDAD IV: Gestión y Cierre del Proyecto</span>
         </div>
-        <p class="unit-talent">Temática: Mori Calliope — la cosecha final del proyecto</p>
+        <p class="unit-talent" data-editable="unit4-talent">Temática: Mori Calliope — la cosecha final del proyecto</p>
         <div class="weeks-grid">
           <a href="pages/semana13.html" class="week-card">Semana 13</a>
           <a href="pages/semana14.html" class="week-card">Semana 14</a>
@@ -264,15 +268,15 @@
           <div class="profile-avatar-inner">🐙</div>
         </div>
 
-        <div class="profile-name">
+        <div class="profile-name" data-editable="profile-name">
           <span class="highlighted">Adrian Alexis</span> Rafael Palomino
         </div>
-        <div class="profile-role">Estudiante de Ingeniería — UPLA</div>
+        <div class="profile-role" data-editable="profile-role">Estudiante de Ingeniería — UPLA</div>
         <div class="profile-oshi-tag">✦ Bajo la tutela de la Grande Priestess, Ninomae Ina'nis ✦</div>
 
         <div class="divider"></div>
 
-        <p class="profile-bio">
+        <p class="profile-bio" data-editable="profile-bio">
           Bienvenido a mi perfil. Soy estudiante de la Facultad de Ingeniería de la
           Universidad Peruana Los Andes y en este portafolio presento mis avances
           técnicos en la asignatura
@@ -306,27 +310,27 @@
 
         <div class="info-row">
           <span class="info-label">Estudiante</span>
-          <span class="info-value">Adrian Alexis Rafael Palomino</span>
+          <span class="info-value" data-editable="info-estudiante">Adrian Alexis Rafael Palomino</span>
         </div>
         <div class="info-row">
           <span class="info-label">Universidad</span>
-          <span class="info-value">Universidad Peruana Los Andes</span>
+          <span class="info-value" data-editable="info-universidad">Universidad Peruana Los Andes</span>
         </div>
         <div class="info-row">
           <span class="info-label">Facultad</span>
-          <span class="info-value">Ingeniería De Sistemas Y Computación</span>
+          <span class="info-value" data-editable="info-facultad">Ingeniería De Sistemas Y Computación</span>
         </div>
         <div class="info-row">
           <span class="info-label">Asignatura</span>
-          <span class="info-value">Taller de Desarrollo de Aplicaciones</span>
+          <span class="info-value" data-editable="info-asignatura">Taller de Desarrollo de Aplicaciones</span>
         </div>
         <div class="info-row">
           <span class="info-label">Temática</span>
-          <span class="info-value">Hololive Myth (Gura · Amelia · Kiara · Calliope · Ina)</span>
+          <span class="info-value" data-editable="info-tematica">Hololive Myth (Gura · Amelia · Kiara · Calliope · Ina)</span>
         </div>
         <div class="info-row">
           <span class="info-label">Año Académico</span>
-          <span class="info-value">2026</span>
+          <span class="info-value" data-editable="info-anio">2026</span>
         </div>
 
         <div class="info-back">
@@ -359,6 +363,7 @@
   </style>
 
   <!-- JS -->
+  <script src="js/edit.js"></script>
   <script src="js/nav.js"></script>
 
 </body>
