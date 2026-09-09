@@ -12,7 +12,7 @@ const GH_TOKEN_KEY = 'holofolio_gh_token';
 /* ============================================================
    TOKEN DE GITHUB (opcional)
    Pega aquí tu Personal Access Token para no ver el botón/prompt.
-   Ejemplo: const GH_TOKEN_EMBEDDED = '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';
+   Ejemplo: const GH_TOKEN_EMBEDDED = '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';
    ⚠️ No subas este archivo a un repo PÚBLICO con el token puesto.
    Usa un token fine-grained solo para PortafolioHolo (Contents: write).
    ============================================================ */
