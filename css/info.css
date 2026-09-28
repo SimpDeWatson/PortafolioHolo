@@ -1,0 +1,100 @@
+/* =========================================
+   info.css — Página Información (centrada)
+   ========================================= */
+
+#info {
+  position: relative;
+  min-height: calc(100vh - 68px);
+  background-image: url('../img/1262705.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#info::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 15, 0.72) 0%,
+    rgba(5, 7, 15, 0.78) 40%,
+    rgba(5, 7, 15, 0.85) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+#info.page.active {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.info-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: calc(100vh - 68px);
+  padding: 2rem;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+}
+
+.info-card {
+  background: rgba(15, 20, 40, 0.85);
+  border: 2px solid var(--border, rgba(255,255,255,0.12));
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 620px;
+  width: min(620px, 100%);
+  text-align: center;
+  box-shadow: 0 0 40px rgba(100, 140, 255, 0.25), 0 8px 32px rgba(0, 0, 0, 0.45);
+  animation: fadeIn 0.7s ease;
+  backdrop-filter: blur(12px);
+  margin: 0 auto !important;
+  flex-shrink: 0;
+}
+
+.info-title {
+  font-family: var(--font-head, sans-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent2, #c5d4ff);
+  margin-bottom: 2rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.1));
+  text-align: left;
+  font-size: 1rem;
+}
+
+.info-label {
+  color: var(--text-muted, #9aa8c7);
+  font-weight: 600;
+}
+
+.info-value {
+  color: var(--text, #e8eeff);
+  max-width: 55%;
+  text-align: right;
+}
+
+.info-back {
+  margin-top: 1.5rem;
+}

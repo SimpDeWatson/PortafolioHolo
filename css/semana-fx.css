@@ -1,0 +1,130 @@
+/* =========================================================
+   semana-fx.css — Efectos Hololive para las páginas de semana
+   Usa las variables --w-* de cada página (no cambia colores ni fondos)
+   Gura (1-4) · Amelia (5-8) · Kiara (9-12) · Calliope (13-16)
+   ========================================================= */
+@property --fx-a{syntax:"<angle>";inherits:false;initial-value:0deg}
+body[data-talent]{--fx-g:color-mix(in srgb,var(--w-accent) 55%,transparent)}
+
+/* ---- capas base ---- */
+.fx-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
+.fx-deco{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.fx-deco>*{position:absolute;display:block}
+.fx-scroll{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--w-accent3),var(--w-accent),var(--w-accent2));box-shadow:0 0 12px var(--w-accent)}
+
+/* ---- navbar ---- */
+body[data-talent] nav{box-shadow:0 8px 32px -14px var(--w-accent)}
+body[data-talent] nav::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:30%;background:linear-gradient(90deg,transparent,var(--w-accent2),transparent);animation:fxnav 5s ease-in-out infinite alternate}
+body[data-talent] .nav-brand{text-shadow:0 0 14px var(--fx-g)}
+@keyframes fxnav{to{left:70%}}
+
+/* ---- cabecera de la semana ---- */
+body[data-talent] .semana-header{position:relative;overflow:hidden;padding:2.4rem 1.6rem 2.2rem;border-radius:24px;backdrop-filter:blur(10px);margin-bottom:1.4rem;background:linear-gradient(160deg,color-mix(in srgb,var(--w-bg-card) 90%,transparent),color-mix(in srgb,var(--w-bg-card2) 62%,transparent));box-shadow:0 22px 60px -22px #000,inset 0 0 70px -34px var(--w-accent)}
+body[data-talent] .semana-header::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 40%,color-mix(in srgb,var(--w-accent2) 20%,transparent) 50%,transparent 60%);transform:translateX(-100%);animation:fxsweep 7s ease-in-out infinite}
+@keyframes fxsweep{0%,55%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* borde giratorio de luz (cabecera y tarjetas) */
+body[data-talent] :is(.semana-header,.pdf-section,.file-card,.files-empty-hint,.coming-soon,.files-dropzone){position:relative}
+body[data-talent] :is(.semana-header,.pdf-section,.file-card,.files-empty-hint,.coming-soon)::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--fx-a),transparent 0 68%,var(--w-accent) 84%,var(--w-accent2) 92%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxspin 6s linear infinite}
+@keyframes fxspin{to{--fx-a:360deg}}
+
+/* icono con anillo orbital */
+body[data-talent] .semana-icon{display:inline-block;position:relative;animation:fxpop .9s cubic-bezier(.2,1.4,.4,1) both,fxfloat 4s 1s ease-in-out infinite}
+body[data-talent] .semana-icon::before{content:"";position:absolute;inset:-16px;border-radius:50%;border:2px dashed var(--w-accent);opacity:.65;animation:fxrot 16s linear infinite}
+@keyframes fxpop{from{transform:scale(0) rotate(-40deg);opacity:0}}
+@keyframes fxfloat{50%{transform:translateY(-9px)}}
+@keyframes fxrot{to{transform:rotate(360deg)}}
+
+/* título con brillo animado */
+body[data-talent] .semana-title{background:linear-gradient(100deg,var(--w-accent2),var(--w-accent),var(--w-accent2),var(--w-accent));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 14px var(--fx-g));animation:fxin .8s .15s both,fxsheen 5s linear infinite}
+@keyframes fxsheen{to{background-position:-250% 0}}
+body[data-talent] .semana-subtitle{text-shadow:0 2px 12px #000}
+
+/* etiqueta del talent con destello */
+body[data-talent] .semana-talent-tag{position:relative;overflow:hidden;background:color-mix(in srgb,var(--w-accent) 14%,transparent);box-shadow:0 0 22px -4px var(--w-accent)}
+body[data-talent] .semana-talent-tag::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--w-accent2) 55%,transparent) 50%,transparent 70%);transform:translateX(-120%);animation:fxsweep 4s 1s ease-in-out infinite}
+
+/* entrada orquestada (una sola vez al cargar) */
+body[data-talent] .semana-header>*:not(.semana-icon):not(.semana-title){animation:fxin .8s both}
+body[data-talent] .semana-header>:nth-child(3){animation-delay:.3s}
+body[data-talent] .semana-header>:nth-child(4){animation-delay:.4s}
+body[data-talent] .semana-header>:nth-child(5){animation-delay:.5s}
+body[data-talent] .tareas-wrapper>*:not(.semana-header):not(.fx-ribbon){animation:fxin 1s .6s both}
+@keyframes fxin{from{opacity:0;transform:translateY(18px)}}
+
+/* cinta de emojis */
+.fx-ribbon{overflow:hidden;margin:0 0 2rem;border-block:1px solid color-mix(in srgb,var(--w-accent) 40%,transparent);background:color-mix(in srgb,var(--w-bg-card) 70%,transparent);backdrop-filter:blur(6px);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.fx-ribbon>div{display:flex;width:max-content;padding:.55rem 0;font-size:1.3rem;animation:fxmarq 28s linear infinite}
+.fx-ribbon span{margin-right:2.2rem;filter:drop-shadow(0 0 6px var(--w-accent))}
+@keyframes fxmarq{to{transform:translateX(-50%)}}
+
+/* ---- tarjetas, botones y enlaces ---- */
+body[data-talent] :is(.pdf-section,.file-card,.files-empty-hint,.coming-soon){border-radius:18px;backdrop-filter:blur(8px);transition:transform .35s,box-shadow .35s}
+body[data-talent] :is(.pdf-section,.file-card):hover{transform:translateY(-6px);box-shadow:0 18px 44px -14px var(--fx-g),0 0 0 1px color-mix(in srgb,var(--w-accent) 60%,transparent)}
+body[data-talent] .pdf-title{text-shadow:0 0 16px var(--fx-g)}
+body[data-talent] .github-link{position:relative;overflow:hidden;box-shadow:0 0 0 0 var(--fx-g);animation:fxpulse 2.8s ease-out infinite}
+body[data-talent] .github-link::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--w-accent2) 40%,transparent) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+body[data-talent] .github-link:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 34px -6px var(--fx-g)}
+body[data-talent] .github-link:hover::after{transform:translateX(120%)}
+@keyframes fxpulse{70%{box-shadow:0 0 0 16px transparent}100%{box-shadow:0 0 0 0 transparent}}
+body[data-talent] .back-link{display:inline-block;transition:transform .3s,text-shadow .3s}
+body[data-talent] .back-link:hover{transform:translateX(-8px);text-shadow:0 0 16px var(--w-accent)}
+body[data-talent] :is(a,button):focus-visible{outline:3px solid var(--w-accent2);outline-offset:3px}
+
+/* =========================================================
+   GURA — océano: rayos de luz, olas, burbujas
+   ========================================================= */
+[data-talent=gura] .fx-rays{inset:-20% -10% auto;height:95%;mix-blend-mode:screen;background:repeating-linear-gradient(105deg,transparent 0 90px,color-mix(in srgb,var(--w-accent2) 11%,transparent) 115px,transparent 170px);-webkit-mask:linear-gradient(#000,transparent 85%);mask:linear-gradient(#000,transparent 85%);animation:fxrays 12s ease-in-out infinite alternate}
+@keyframes fxrays{from{transform:translateX(-6%) skewX(-4deg);opacity:.45}to{transform:translateX(6%) skewX(4deg);opacity:1}}
+[data-talent=gura] .fx-waves{left:0;bottom:0;width:200%;height:110px;animation:fxwave 16s linear infinite}
+[data-talent=gura] .fx-waves path{fill:color-mix(in srgb,var(--w-accent) 24%,transparent)}
+[data-talent=gura] .fx-waves.w2{bottom:-16px;height:100px;animation-duration:26s;animation-direction:reverse}
+[data-talent=gura] .fx-waves.w2 path{fill:color-mix(in srgb,var(--w-accent3) 34%,transparent)}
+@keyframes fxwave{to{transform:translateX(-50%)}}
+[data-talent=gura] .semana-title{animation:fxin .8s .15s both,fxsheen 5s linear infinite,fxbob 5s 1s ease-in-out infinite}
+@keyframes fxbob{50%{transform:translateY(-5px)}}
+[data-talent=gura] .semana-icon::before{border-style:dotted;border-width:3px}
+
+/* =========================================================
+   AMELIA — reloj, engranajes y lupa de detective
+   ========================================================= */
+[data-talent=amelia] .fx-gear{width:340px;height:340px;fill:var(--w-accent);opacity:.1;animation:fxrot 42s linear infinite}
+[data-talent=amelia] .fx-gear.g1{left:-120px;bottom:-110px}
+[data-talent=amelia] .fx-gear.g2{right:-90px;top:70px;width:260px;height:260px;animation-duration:30s;animation-direction:reverse}
+[data-talent=amelia] .semana-title{letter-spacing:.06em}
+[data-talent=amelia] .semana-icon::before{border:0;opacity:.85;background:repeating-conic-gradient(var(--w-accent) 0 2deg,transparent 2deg 30deg);-webkit-mask:radial-gradient(circle,transparent 66%,#000 67% 74%,transparent 75%);mask:radial-gradient(circle,transparent 66%,#000 67% 74%,transparent 75%);animation:none}
+[data-talent=amelia] .semana-icon::after{content:"";position:absolute;left:50%;top:-8px;width:2px;height:calc(50% + 8px);margin-left:-1px;background:var(--w-accent2);box-shadow:0 0 8px var(--w-accent);transform-origin:bottom;animation:fxrot 60s steps(60) infinite}
+.fx-lens{position:fixed;left:0;top:0;width:150px;height:150px;border-radius:50%;pointer-events:none;z-index:80;opacity:0;transition:opacity .3s;will-change:transform;border:3px solid var(--w-accent);box-shadow:0 0 22px var(--fx-g),inset 0 0 30px rgba(255,255,255,.08);backdrop-filter:brightness(1.25) saturate(1.2)}
+
+/* =========================================================
+   KIARA — fuego de fénix
+   ========================================================= */
+[data-talent=kiara] .fx-flames{left:-5%;right:-5%;bottom:-60px;height:42vh;mix-blend-mode:screen;filter:blur(16px);background:radial-gradient(ellipse 30% 70% at 15% 100%,color-mix(in srgb,var(--w-accent) 52%,transparent),transparent),radial-gradient(ellipse 36% 60% at 50% 100%,color-mix(in srgb,var(--w-accent2) 42%,transparent),transparent),radial-gradient(ellipse 30% 75% at 85% 100%,color-mix(in srgb,var(--w-accent3) 58%,transparent),transparent);animation:fxflame 2.6s ease-in-out infinite alternate}
+@keyframes fxflame{from{transform:scaleY(.85) translateX(-1%);opacity:.7}to{transform:scaleY(1.15) translateX(1%);opacity:1}}
+[data-talent=kiara] .semana-title{animation:fxin .8s .15s both,fxsheen 3s linear infinite,fxflick 2.2s 1s steps(1) infinite}
+@keyframes fxflick{0%,100%{opacity:1}44%{opacity:.88}48%{opacity:1}72%{opacity:.93}}
+[data-talent=kiara] .semana-icon::before{border-style:solid;box-shadow:0 0 18px var(--w-accent),inset 0 0 18px var(--w-accent3)}
+
+/* =========================================================
+   CALLIOPE — aura de segadora: viñeta, líneas y glitch
+   ========================================================= */
+[data-talent=calliope] .fx-vig{inset:0;box-shadow:inset 0 0 170px color-mix(in srgb,var(--w-accent) 36%,transparent);animation:fxbeat 3.2s ease-in-out infinite}
+@keyframes fxbeat{50%{box-shadow:inset 0 0 230px color-mix(in srgb,var(--w-accent) 52%,transparent)}}
+[data-talent=calliope] .fx-scan{inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.028) 3px 4px);overflow:hidden}
+[data-talent=calliope] .fx-scan::after{content:"";position:absolute;left:0;right:0;height:130px;top:-130px;background:linear-gradient(transparent,color-mix(in srgb,var(--w-accent) 13%,transparent),transparent);animation:fxband 7s linear infinite}
+@keyframes fxband{to{top:105%}}
+[data-talent=calliope] .semana-title{animation:fxin .8s .15s both,fxsheen 5s linear infinite,fxglitch 6s 1.5s infinite}
+@keyframes fxglitch{0%,92%,100%{transform:none}93%{transform:translateX(-4px) skewX(-6deg)}95%{transform:translateX(4px) skewX(5deg)}97%{transform:translateX(-2px)}}
+[data-talent=calliope] .semana-icon::before{border-style:double;border-width:5px}
+
+/* ---- adaptación móvil y accesibilidad ---- */
+@media(max-width:640px){
+  body[data-talent] .semana-header{padding:1.6rem 1rem}
+  body[data-talent] .semana-title{font-size:1.6rem!important}
+  [data-talent=amelia] .fx-gear{opacity:.06}
+  .fx-ribbon>div{font-size:1.1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-talent] *,body[data-talent] *::before,body[data-talent] *::after,.fx-deco *{animation:none!important;transition:none!important}
+  .fx-canvas,.fx-lens{display:none}
+}
